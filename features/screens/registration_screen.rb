@@ -10,6 +10,7 @@ class RegistrationScreen
     @eye_icons = Elements.new(:xpath , '//android.widget.ImageButton[@content-desc="Show password"]')
     @register_button = Elements.new(:xpath , '//android.widget.Button[@text="REGISTER"]')
     @cancel_offer_button = Elements.new(:xpath,'//*[@resource-id="com.strawberrynetNew.android:id/btn_cancel"]')
+    @welcome_message = Elements.new(:xpath, '//android.widget.TextView[@resource-id="com.strawberrynetNew.android:id/welcome_message"]')
   end
 
   def click_register_tab_button
@@ -52,5 +53,13 @@ class RegistrationScreen
   def set_email(text)
     @email_field.set(text)
   end
+  def verify_welcome_message(name)
+    actual = @welcome_message.get_text
+    expected = "Welcome, #{name}"
+    raise "Welcome message is not the same: Expected #{expected} , Actual: #{actual}" unless actual == expected
+  end
 
+  def click_eye_button()
+    @eye_icons.click_every_element_in_the_list
+  end
 end
