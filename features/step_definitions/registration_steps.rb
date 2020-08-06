@@ -31,3 +31,4 @@ end
 Then(/^the correct welcome message is displayed with my name$/) do
   @screens.registration_screen.verify_welcome_message(@first_name)
 end
+
